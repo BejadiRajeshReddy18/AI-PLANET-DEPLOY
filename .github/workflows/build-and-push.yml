@@ -1,0 +1,22 @@
+- name: Clone Repository B
+        uses: GuillaumeFalourd/clone-github-repo-action@v2.3
+        with:
+          depth: 1
+          branch: 'main'
+          owner: 'iam-sameera'
+          repository: 'argocd-k8s-deploy'
+
+      - name: Access cloned repository content
+        run: |
+          cd argocd-k8s-deploy
+          sed -i "s/devopswithsam\/argodemo:[0-9]*\|devopswithsam\/argodemo:latest/devopswithsam\/argodemo:${{ github.run_number }}/" deployment.yml
+          git config --global user.email "bejadirajeshreddy@gmail.com"
+          git config --global user.name "BejadiRajeshReddy18"
+          git add deployment.yml
+          git commit -m "Update deployment.yml ${{ github.run_number }}"
+
+      - name: Push to Repository argocd-k8s-deploy
+        run: |
+          cd argocd-k8s-deploy
+          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/iam-sameera/argocd-k8s-deploy.git
+          git push origin main
