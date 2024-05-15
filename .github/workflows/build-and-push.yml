@@ -3,7 +3,7 @@
         with:
           depth: 1
           branch: 'main'
-          owner: 'iam-sameera'
+          owner: 'Rajesh'
           repository: 'argocd-k8s-deploy'
 
       - name: Access cloned repository content
@@ -18,5 +18,5 @@
       - name: Push to Repository argocd-k8s-deploy
         run: |
           cd argocd-k8s-deploy
-          git remote set-url origin https://x-access-token:${{ secrets.PAT }}@github.com/iam-sameera/argocd-k8s-deploy.git
+          git remote set-url origin https://x-access-token:${{zQuQtkREdgo36OZD}}@github.com/BejadiRajeshReddy18/argocd-k8s-deploy.git
           git push origin main
